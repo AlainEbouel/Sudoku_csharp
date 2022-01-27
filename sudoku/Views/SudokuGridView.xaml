@@ -1,0 +1,70 @@
+﻿<UserControl x:Class="Sudoku.Views.SudokuGridView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Sudoku.Views"
+             xmlns:views="clr-namespace:Sudoku.Views"
+             xmlns:models="clr-namespace:Sudoku.ViewModels"
+             mc:Ignorable="d"
+             d:DesignHeight="400" d:DesignWidth="400">
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type models:LittleSudokuGridViewModel}">
+            <views:LittleSudokuGridView/>
+        </DataTemplate>        
+        <Style x:Key="allMargins">
+            <Setter Property="Control.Margin" Value="3"/>
+        </Style>
+        <Style BasedOn="{StaticResource allMargins}" TargetType="{x:Type Button}"/>
+        <Style BasedOn="{StaticResource allMargins}" TargetType="{x:Type TextBlock}"/>
+        <Style BasedOn="{StaticResource allMargins}" TargetType="{x:Type TextBox}"/>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <!-- spacer -->
+        <Border BorderThickness="3" BorderBrush="Black" Grid.Row="0" Grid.Column="0">
+            <ContentControl Content="{Binding LittleGridViewModels[0]}"/>
+        </Border>
+        <!-- spacer -->
+        <Border BorderThickness="3" BorderBrush="Black" Grid.Row="0" Grid.Column="1">
+            <ContentControl Content="{Binding LittleGridViewModels[1]}"/>
+        </Border>
+        <!-- spacer -->
+        <Border BorderThickness="3" BorderBrush="Black" Grid.Row="0" Grid.Column="2">
+            <ContentControl Content="{Binding LittleGridViewModels[2]}"/>
+        </Border>
+        <!-- spacer -->
+        <Border BorderThickness="3" BorderBrush="Black" Grid.Row="1" Grid.Column="0">
+            <ContentControl Content="{Binding LittleGridViewModels[3]}"/>
+        </Border>
+        <!-- spacer -->
+        <Border BorderThickness="3" BorderBrush="Black" Grid.Row="1" Grid.Column="1">
+            <ContentControl Content="{Binding LittleGridViewModels[4]}"/>
+        </Border>
+        <!-- spacer -->
+        <Border BorderThickness="3" BorderBrush="Black" Grid.Row="1" Grid.Column="2">
+            <ContentControl Content="{Binding LittleGridViewModels[5]}"/>
+        </Border>
+        <!-- spacer -->
+        <Border BorderThickness="3" BorderBrush="Black" Grid.Row="2" Grid.Column="0">
+            <ContentControl Content="{Binding LittleGridViewModels[6]}"/>
+        </Border>
+        <!-- spacer -->
+        <Border BorderThickness="3" BorderBrush="Black" Grid.Row="2" Grid.Column="1">
+            <ContentControl Content="{Binding LittleGridViewModels[7]}"/>
+        </Border>
+        <!-- spacer -->
+        <Border BorderThickness="3" BorderBrush="Black" Grid.Row="2" Grid.Column="2">
+            <ContentControl Content="{Binding LittleGridViewModels[8]}"/>
+        </Border>
+    </Grid>
+</UserControl>

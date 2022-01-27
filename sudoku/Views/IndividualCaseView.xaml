@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="Sudoku.Views.IndividualCaseView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Sudoku.Views"
+             xmlns:views="clr-namespace:Sudoku.Views"
+             xmlns:models="clr-namespace:Sudoku.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="400">
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type models:BigNumberViewModel}">
+            <views:BigNumberView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type models:LittleNumberViewModel}">
+            <views:LittleNumberView/>
+        </DataTemplate>
+        <Style x:Key="allMargins">
+            <Setter Property="Control.Margin" Value="3"/>
+        </Style>
+        <Style BasedOn="{StaticResource allMargins}" TargetType="{x:Type Button}"/>
+        <Style BasedOn="{StaticResource allMargins}" TargetType="{x:Type TextBlock}"/>
+        <Style BasedOn="{StaticResource allMargins}" TargetType="{x:Type TextBox}"/>
+    </UserControl.Resources>
+    <Border Background="{Binding BorderColor}">
+    <Button Background="{Binding CurrentColor}" BorderBrush="Transparent">
+        <Button.InputBindings>
+            <MouseBinding Gesture="LeftClick" Command="{Binding ChangePageCommand}"/>
+            <MouseBinding Gesture="RightClick" Command="{Binding ColorPickerCommand}"/>
+            <MouseBinding Gesture="CTRL+LeftClick" Command="{Binding SelectedCommand}" />
+        </Button.InputBindings>
+        <ContentControl Width="50" Content="{Binding CurrentViewModel}"/>
+    </Button>
+    </Border>
+</UserControl>

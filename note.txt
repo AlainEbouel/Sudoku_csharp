@@ -1,0 +1,3 @@
+utilisation de plusieur view pourrait grandement réduire la longueur du code
+par exemple comme discuté : une view pour les note et une pour le définitif,
+mais il pourrait aussi avoir un view par gros carré dans laquel il y a les petit carré
