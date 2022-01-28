@@ -63,7 +63,7 @@ namespace Sudoku.ViewModels
 
         private void MultipleSelection(string obj)
         {
-            SudokuGridViewModel.ResetMultiSelection();
+            SudokuView.ResetMultiSelection();
 
             /* if(activationCount % 2 == 0)
              {

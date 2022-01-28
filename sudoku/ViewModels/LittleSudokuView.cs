@@ -3,10 +3,10 @@ using System.Collections.ObjectModel;
 
 namespace Sudoku.ViewModels
 {
-    public class LittleSudokuGridViewModel : BaseViewModel
+    public class LittleSudokuView : BaseViewModel
     {
         private ObservableCollection<BaseViewModel> individualCaseViewModels;
-        public List<IndividualCaseViewModel> littlecaseList { get; set; }
+        public List<IndividualCaseView> IndividualCaseList { get; set; }
         public ObservableCollection<BaseViewModel> IndividualCaseViewModels
         {
             get
@@ -19,11 +19,11 @@ namespace Sudoku.ViewModels
                 OnPropertyChanged();
             }
         }
-        public LittleSudokuGridViewModel()
+        public LittleSudokuView()
         {
             individualCaseViewModels = new ObservableCollection<BaseViewModel>();
             Name = this.GetType().Name;
-            littlecaseList = new List<IndividualCaseViewModel>();
+            IndividualCaseList = new List<IndividualCaseView>();
             InitViews();
         }
 
@@ -32,14 +32,14 @@ namespace Sudoku.ViewModels
             IndividualCaseViewModels = new ObservableCollection<BaseViewModel>();
             for (int i = 0; i != 9; i++)
             {
-                IndividualCaseViewModel individualCaseViewModel = new IndividualCaseViewModel();
+                IndividualCaseView individualCaseViewModel = new IndividualCaseView();
                 IndividualCaseViewModels.Insert(i, individualCaseViewModel);
-                littlecaseList.Add(individualCaseViewModel);
+                IndividualCaseList.Add(individualCaseViewModel);
             }
         }
-        public IndividualCaseViewModel getIndividualCase(int index)
+        public IndividualCaseView getIndividualCase(int index)
         {
-            return (IndividualCaseViewModel)IndividualCaseViewModels[index];
+            return (IndividualCaseView)IndividualCaseViewModels[index];
         }
 
     }

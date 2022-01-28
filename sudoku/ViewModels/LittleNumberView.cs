@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Sudoku.ViewModels
 {
-    public class LittleNumberViewModel : BaseViewModel
+    public class LittleNumberView : BaseViewModel
     {
         private LittleNumberModel LittleNbr1 { get; set; }
         private LittleNumberModel LittleNbr2 { get; set; }
@@ -33,7 +33,7 @@ namespace Sudoku.ViewModels
                     // SudokuGridViewModel.multSelect = value;
                     //IndividualCaseViewModel ind. = value;
                     input = 1;
-                    SudokuGridViewModel.ApplyModifications(input, value);
+                    SudokuView.ApplyModifications(input, value);
                 }
                 else
                 {
@@ -53,7 +53,7 @@ namespace Sudoku.ViewModels
                 {
                     //SudokuGridViewModel.multSelect  = value;
                     input = 2;
-                    SudokuGridViewModel.ApplyModifications(input, value);
+                    SudokuView.ApplyModifications(input, value);
                 }
                 else
                 {
@@ -73,7 +73,7 @@ namespace Sudoku.ViewModels
                 {
                    // SudokuGridViewModel.multSelect = value;
                     input = 3;
-                    SudokuGridViewModel.ApplyModifications(input, value);
+                    SudokuView.ApplyModifications(input, value);
                 }
                 else
                 {
@@ -92,7 +92,7 @@ namespace Sudoku.ViewModels
                 {
                    // SudokuGridViewModel.multSelect = value;
                     input = 4;
-                    SudokuGridViewModel.ApplyModifications(input, value);
+                    SudokuView.ApplyModifications(input, value);
                 }
                 else
                 {
@@ -111,7 +111,7 @@ namespace Sudoku.ViewModels
                 {
                    // SudokuGridViewModel.multSelect = value;
                     input = 5;
-                    SudokuGridViewModel.ApplyModifications(input, value);
+                    SudokuView.ApplyModifications(input, value);
                 }
                 else
                 {
@@ -121,7 +121,7 @@ namespace Sudoku.ViewModels
                 }
             }
         }
-        public LittleNumberViewModel()
+        public LittleNumberView()
         {
             Name = this.GetType().Name;
 

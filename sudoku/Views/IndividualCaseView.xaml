@@ -9,10 +9,10 @@
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="400">
     <UserControl.Resources>
-        <DataTemplate DataType="{x:Type models:BigNumberViewModel}">
+        <DataTemplate DataType="{x:Type models:BigNumberView}">
             <views:BigNumberView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type models:LittleNumberViewModel}">
+        <DataTemplate DataType="{x:Type models:LittleNumberView}">
             <views:LittleNumberView/>
         </DataTemplate>
         <Style x:Key="allMargins">

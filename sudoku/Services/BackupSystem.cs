@@ -40,7 +40,7 @@ namespace Sudoku.Services
         {
             if (StackIsLocked == false)
             {
-                UndoStack.Push(Save(SudokuGridViewModel.littleGridViewModels));
+                UndoStack.Push(Save(SudokuView.littleGridViewModels));
 
                 if (RedoStack.Count > 0)
                 {
@@ -53,7 +53,7 @@ namespace Sudoku.Services
         {
             string DataToSave;
 
-            DataToSave = Save(SudokuGridViewModel.littleGridViewModels);
+            DataToSave = Save(SudokuView.littleGridViewModels);
             File.WriteAllText(@"backupFile.txt", DataToSave);
         }
 
@@ -64,7 +64,7 @@ namespace Sudoku.Services
         {
             string DataToSave;
 
-            DataToSave = Save(SudokuGridViewModel.littleGridViewModels);
+            DataToSave = Save(SudokuView.littleGridViewModels);
             File.WriteAllText(@fileName, DataToSave);
         }
 
@@ -89,7 +89,7 @@ namespace Sudoku.Services
             RedoStack.Clear();
         }
 
-        private static string Save(ObservableCollection<LittleSudokuGridViewModel> listOfLittleNumber)
+        private static string Save(ObservableCollection<LittleSudokuView> listOfLittleNumber)
         {
             XmlDocument gameData = new XmlDocument();
 
@@ -99,12 +99,12 @@ namespace Sudoku.Services
             XmlNode littleSudoku = gameData.CreateElement("LittleSudoku");
             sudoku.AppendChild(littleSudoku);
 
-            foreach (LittleSudokuGridViewModel l in listOfLittleNumber)
+            foreach (LittleSudokuView l in listOfLittleNumber)
             {
                 XmlNode childLittleSudoku = gameData.CreateElement("ChildLittleSudoku");
                 littleSudoku.AppendChild(childLittleSudoku);
 
-                foreach (IndividualCaseViewModel ind in l.IndividualCaseViewModels)
+                foreach (IndividualCaseView ind in l.IndividualCaseViewModels)
                 {
                     XmlNode individualCase = gameData.CreateElement("IndividualCase");
 
@@ -160,9 +160,9 @@ namespace Sudoku.Services
                 }
             }
             
-            foreach (LittleSudokuGridViewModel little in SudokuGridViewModel.littleGridViewModels)
+            foreach (LittleSudokuView little in SudokuView.littleGridViewModels)
             {
-                foreach (IndividualCaseViewModel ind in little.IndividualCaseViewModels)
+                foreach (IndividualCaseView ind in little.IndividualCaseViewModels)
                 {
                     if (dataList[i] == "0")
                     {

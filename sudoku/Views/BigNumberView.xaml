@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Sudoku.Views" xmlns:viewmodels="clr-namespace:Sudoku.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:BigNumberViewModel}"
+             xmlns:local="clr-namespace:Sudoku.Views" xmlns:viewmodels="clr-namespace:Sudoku.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:BigNumberView}"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="400">
     <TextBox Grid.Row="0" Grid.Column="1" BorderThickness="0" Grid.RowSpan="3" TextAlignment="Center" FontSize="40" MaxLength="1" PreviewTextInput="NumberValidationTextBox"

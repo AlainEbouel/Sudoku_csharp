@@ -9,7 +9,7 @@
              mc:Ignorable="d"
              d:DesignHeight="400" d:DesignWidth="400">
     <UserControl.Resources>
-        <DataTemplate DataType="{x:Type models:LittleSudokuGridViewModel}">
+        <DataTemplate DataType="{x:Type models:LittleSudokuView}">
             <views:LittleSudokuGridView/>
         </DataTemplate>        
         <Style x:Key="allMargins">

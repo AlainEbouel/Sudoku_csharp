@@ -4,7 +4,7 @@
     {
         private BaseViewModel currentViewModel;
         private BaseViewModel buttonViewModel;
-        private SudokuGridViewModel sgvm;
+        private SudokuView sgvm;
         private ButtonViewModel bvm;
 
         public BaseViewModel CurrentViewModel
@@ -31,7 +31,7 @@
         }
         private void initViewModels()
         {
-            sgvm = new SudokuGridViewModel();
+            sgvm = new SudokuView();
             bvm = new ButtonViewModel();
             CurrentViewModel = sgvm;
             ButtonViewModel = bvm;

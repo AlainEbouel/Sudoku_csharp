@@ -45,7 +45,7 @@ namespace SudokuTest
 
         [TestInitialize]
 
-        public void SetUp() => analyzer = new VerificationClass(new ObservableCollection<LittleSudokuGridViewModel>());
+        public void SetUp() => analyzer = new VerificationClass(new ObservableCollection<LittleSudokuView>());
 
         public void TestVerification(bool expected, int[,] grid)
         {

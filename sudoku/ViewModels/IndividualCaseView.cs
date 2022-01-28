@@ -8,17 +8,20 @@ using System.Linq;
 
 namespace Sudoku.ViewModels
 {
-    public class IndividualCaseViewModel : BaseViewModel
+    public class IndividualCaseView : BaseViewModel
     {
         private BaseViewModel currentViewModel;
         private List<BaseViewModel> viewModels;
         private int count;
-        public BigNumberViewModel bnvm { get; set; }
-        public LittleNumberViewModel lnvm { get; set; }
+        public BigNumberView bnvm { get; set; }
+        public LittleNumberView lnvm { get; set; }
         public int value { get; set; }
         private string currentColor;
         private string borderColor;
         public bool IsSelected { get; set; } 
+        public int id { get; set; }
+     
+        public List<List<IndividualCaseView>> BelongingList { get; set; }
     
         public DelegateCommand<string> ChangePageCommand { get; set; }
         public DelegateCommand<string> ColorPickerCommand { get; set; }
@@ -72,7 +75,7 @@ namespace Sudoku.ViewModels
                 OnPropertyChanged();
             }
         }
-        public IndividualCaseViewModel()
+        public IndividualCaseView()
         {
             Name = this.GetType().Name;
             CurrentColor = "transparent";
@@ -80,6 +83,7 @@ namespace Sudoku.ViewModels
             ChangePageCommand = new DelegateCommand<string>(ChangePage);
             ColorPickerCommand = new DelegateCommand<string>(ColorPicker);
             SelectedCommand = new DelegateCommand<string>(Selected);
+            BelongingList = new List<List<IndividualCaseView>>();
             count = 0;
             initViewModels();
             CurrentViewModel = ViewModels[0];
@@ -96,8 +100,8 @@ namespace Sudoku.ViewModels
                 IsSelected = true;
                 //selected = true;
                 changeBorderColor("black");
-                SudokuGridViewModel.selectedCase.Add(bnvm);
-                SudokuGridViewModel.selectedCase2.Add(lnvm);
+                SudokuView.selectedCase.Add(bnvm);
+                SudokuView.selectedCase2.Add(lnvm);
                
                 //InputSelected();
             }
@@ -108,20 +112,20 @@ namespace Sudoku.ViewModels
                 lnvm.IsSelected = false;
                 IsSelected = false;
 
-                IEnumerable<BigNumberViewModel> bigN = new List<BigNumberViewModel>();
-                IEnumerable<LittleNumberViewModel> littleN = new List<LittleNumberViewModel>();                
+                IEnumerable<BigNumberView> bigN = new List<BigNumberView>();
+                IEnumerable<LittleNumberView> littleN = new List<LittleNumberView>();                
                 
-                bigN = SudokuGridViewModel.selectedCase.Where(a => a != bnvm);                
-                littleN = SudokuGridViewModel.selectedCase2.Where(a => a != lnvm);
+                bigN = SudokuView.selectedCase.Where(a => a != bnvm);                
+                littleN = SudokuView.selectedCase2.Where(a => a != lnvm);
 
-                SudokuGridViewModel.selectedCase = new List<BigNumberViewModel>();
-                SudokuGridViewModel.selectedCase2 = new List<LittleNumberViewModel>();
+                SudokuView.selectedCase = new List<BigNumberView>();
+                SudokuView.selectedCase2 = new List<LittleNumberView>();
 
                 foreach (var bN in bigN)
-                    SudokuGridViewModel.selectedCase.Add(bN);
+                    SudokuView.selectedCase.Add(bN);
 
                 foreach (var lN in littleN)
-                    SudokuGridViewModel.selectedCase2.Add(lN);
+                    SudokuView.selectedCase2.Add(lN);
             }
           
         }
@@ -139,63 +143,63 @@ namespace Sudoku.ViewModels
                     CurrentColor = ColorPickerService.Aquamarine.ToString();
                     if (IsSelected)
                     {
-                        new SudokuGridViewModel(new ObservableCollection<BaseViewModel>()).ApplyColors(CurrentColor);
+                        new SudokuView(new ObservableCollection<BaseViewModel>()).ApplyColors(CurrentColor);
                     }
                     break;
                 case 1:
                     CurrentColor = ColorPickerService.BlueViolet.ToString();
                     if (IsSelected)
                     {
-                        new SudokuGridViewModel(new ObservableCollection<BaseViewModel>()).ApplyColors(CurrentColor);
+                        new SudokuView(new ObservableCollection<BaseViewModel>()).ApplyColors(CurrentColor);
                     }
                     break;
                 case 2:
                     CurrentColor = ColorPickerService.Brown.ToString();
                     if (IsSelected)
                     {
-                        new SudokuGridViewModel(new ObservableCollection<BaseViewModel>()).ApplyColors(CurrentColor);
+                        new SudokuView(new ObservableCollection<BaseViewModel>()).ApplyColors(CurrentColor);
                     }
                     break;
                 case 3:
                     CurrentColor = ColorPickerService.Lime.ToString();
                     if (IsSelected)
                     {
-                        new SudokuGridViewModel(new ObservableCollection<BaseViewModel>()).ApplyColors(CurrentColor);
+                        new SudokuView(new ObservableCollection<BaseViewModel>()).ApplyColors(CurrentColor);
                     }
                     break;
                 case 4:
                     CurrentColor = ColorPickerService.Orange.ToString();
                     if (IsSelected)
                     {
-                        new SudokuGridViewModel(new ObservableCollection<BaseViewModel>()).ApplyColors(CurrentColor);
+                        new SudokuView(new ObservableCollection<BaseViewModel>()).ApplyColors(CurrentColor);
                     }
                     break;
                 case 5:
                     CurrentColor = ColorPickerService.SeaGreen.ToString();
                     if (IsSelected)
                     {
-                        new SudokuGridViewModel(new ObservableCollection<BaseViewModel>()).ApplyColors(CurrentColor);
+                        new SudokuView(new ObservableCollection<BaseViewModel>()).ApplyColors(CurrentColor);
                     }
                     break;
                 case 6:
                     CurrentColor = ColorPickerService.RoyalBlue.ToString();
                     if (IsSelected)
                     {
-                        new SudokuGridViewModel(new ObservableCollection<BaseViewModel>()).ApplyColors(CurrentColor);
+                        new SudokuView(new ObservableCollection<BaseViewModel>()).ApplyColors(CurrentColor);
                     }
                     break;
                 case 7:
                     CurrentColor = ColorPickerService.Gold.ToString();
                     if (IsSelected)
                     {
-                        new SudokuGridViewModel(new ObservableCollection<BaseViewModel>()).ApplyColors(CurrentColor);
+                        new SudokuView(new ObservableCollection<BaseViewModel>()).ApplyColors(CurrentColor);
                     }
                     break;
                 case 8:
                     CurrentColor = ColorPickerService.DarkTurquoise.ToString();
                     if (IsSelected)
                     {
-                        new SudokuGridViewModel(new ObservableCollection<BaseViewModel>()).ApplyColors(CurrentColor);
+                        new SudokuView(new ObservableCollection<BaseViewModel>()).ApplyColors(CurrentColor);
                     }
                     break;
             }
@@ -204,10 +208,12 @@ namespace Sudoku.ViewModels
 
         private void initViewModels()
         {
-            bnvm = new BigNumberViewModel(new BigNumber());
+            bnvm = new BigNumberView(new BigNumber(), this);
+           // bnvm.BigNumber = SudokuView.Sudoku_id++.ToString();
             ViewModels.Add(bnvm);
-            lnvm = new LittleNumberViewModel();
+            lnvm = new LittleNumberView();
             ViewModels.Add(lnvm);
+            
         }
         private void ChangePage(string pageName)
         {

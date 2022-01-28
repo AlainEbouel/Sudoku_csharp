@@ -1,15 +1,18 @@
 ﻿using Sudoku.Models;
 using Sudoku.Services;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace Sudoku.ViewModels
 {
-    public class BigNumberViewModel : BaseViewModel
+    public class BigNumberView : BaseViewModel
     {
         public bool IsSelected { get; set; }
         public readonly int Id;
-        public BigNumberViewModel(BigNumber number)
+        public IndividualCaseView ParentIndCase { get; set; }
+        public BigNumberView(BigNumber number, IndividualCaseView parentIndCase)
         {
+            ParentIndCase = parentIndCase;
             Name = this.GetType().Name;
             this.Numbers = number;
             IsSelected = false;
@@ -28,16 +31,20 @@ namespace Sudoku.ViewModels
                 if (IsSelected == true && BackupSystem.Undo_redo_is_Active == false)
                 {
                     // SudokuGridViewModel.multSelect = Numbers.Number;
-                    SudokuGridViewModel.ApplyModifications(value);
+                    SudokuView.ApplyModifications(value);
                 }
                 else
                 {
                     this.Numbers.Number = value;
                     this.OnPropertyChanged("BigNumber");
                     // valueModified = Numbers.Number;
-                    new SudokuGridViewModel(new ObservableCollection<BaseViewModel>()).ActiveVerification();
+                    //new SudokuView(new ObservableCollection<BaseViewModel>()).ActiveVerification();
                     BackupSystem.SaveOnStacks();
+                  
                 }
+                    if (SudokuView.VerificationSystem != null)
+                    SudokuView.VerificationSystem.Verification_2();
+                
                 
             }
         }

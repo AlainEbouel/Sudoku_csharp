@@ -13,7 +13,7 @@ namespace SudokuTest
     public class UndoRedoTest
     {
 
-        private SudokuGridViewModel grille;
+        private SudokuView grille;
 
         string start, beforeUndo, afterUndo, beforeUndo2,afterUndo2,beforeUndo3,afterUndo3,redoLittle,redoColor,redoBig;
 
@@ -23,14 +23,14 @@ namespace SudokuTest
         { 
 
 
-            grille = new SudokuGridViewModel();
+            grille = new SudokuView();
 
             BackupSystem.SaveOnStacks();
             BackupSystem.BackupActivation("start.txt");
             
             //littleNumber(annotations)
             
-            grille.LittleGridViewModels[0].littlecaseList[0].lnvm.LittleNumber1 = "1";
+            grille.LittleGridViewModels[0].IndividualCaseList[0].lnvm.LittleNumber1 = "1";
             //grille.LittleGridViewModels[0].littlecaseList[0].bnvm.BigNumber = "1";
             BackupSystem.BackupActivation("beforeUndo.txt"); //devrait etre different
             BackupSystem.Undo();
@@ -41,7 +41,7 @@ namespace SudokuTest
 
             //couleur
 
-            grille.LittleGridViewModels[0].littlecaseList[0].CurrentColor = "Aquamarine";
+            grille.LittleGridViewModels[0].IndividualCaseList[0].CurrentColor = "Aquamarine";
             BackupSystem.BackupActivation("beforeUndo2.txt");
             BackupSystem.Undo();
             BackupSystem.BackupActivation("afterUndo2.txt");
@@ -51,7 +51,7 @@ namespace SudokuTest
 
             //bigNumber (nombre principal)
 
-            grille.LittleGridViewModels[0].littlecaseList[0].bnvm.BigNumber = "1";
+            grille.LittleGridViewModels[0].IndividualCaseList[0].bnvm.BigNumber = "1";
             BackupSystem.BackupActivation("beforeUndo3.txt");
             BackupSystem.Undo();
             BackupSystem.BackupActivation("afterUndo3.txt");

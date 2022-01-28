@@ -9,7 +9,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="800" Width="600">
     <Window.Resources>
-        <DataTemplate DataType="{x:Type models:SudokuGridViewModel}">
+        <DataTemplate DataType="{x:Type models:SudokuView}">
             <views:SudokuGridView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type models:ButtonViewModel}">

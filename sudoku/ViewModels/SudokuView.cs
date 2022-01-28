@@ -6,17 +6,19 @@ using System.Linq;
 
 namespace Sudoku.ViewModels
 {
-    public class SudokuGridViewModel : BaseViewModel
+    public class SudokuView : BaseViewModel
     {
-        public static ObservableCollection<LittleSudokuGridViewModel> littleGridViewModels { get; private set; }
+        public static ObservableCollection<LittleSudokuView> littleGridViewModels { get; private set; }
         private static VerificationClass VerificationApp;
+        public static VerificationReviewed VerificationSystem {get; set;}
         //public static string MultSelect { get; set; }        
 
-        public static List<BigNumberViewModel> selectedCase = new List<BigNumberViewModel>();
-        public static List<LittleNumberViewModel> selectedCase2 = new List<LittleNumberViewModel>();
+        public static List<BigNumberView> selectedCase = new List<BigNumberView>();
+        public static List<LittleNumberView> selectedCase2 = new List<LittleNumberView>();
+        public static int Sudoku_id { get; set; } = 1;
 
 
-        public ObservableCollection<LittleSudokuGridViewModel> LittleGridViewModels
+        public ObservableCollection<LittleSudokuView> LittleGridViewModels
         {
             get
             {
@@ -28,28 +30,36 @@ namespace Sudoku.ViewModels
                 OnPropertyChanged();
             }
         }
-        public SudokuGridViewModel()
+        public SudokuView()
         {
-            LittleGridViewModels = new ObservableCollection<LittleSudokuGridViewModel>();
+            VerificationApp = new VerificationClass(LittleGridViewModels);
+            LittleGridViewModels = new ObservableCollection<LittleSudokuView>();
             Name = this.GetType().Name;
             InitViews();
-            VerificationApp = new VerificationClass(LittleGridViewModels);           
+                
 
         }
 
-        public SudokuGridViewModel(ObservableCollection<BaseViewModel> littleGridViewModel)
+        public SudokuView(ObservableCollection<BaseViewModel> littleGridViewModel)
         {
 
         }
 
         private void InitViews()
         {
-            LittleGridViewModels = new ObservableCollection<LittleSudokuGridViewModel>();
+           
+
+            LittleGridViewModels = new ObservableCollection<LittleSudokuView>();
             for (int i = 0; i != 9; i++)
             {
-                LittleGridViewModels.Insert(i, new LittleSudokuGridViewModel());
+                LittleGridViewModels.Insert(i, new LittleSudokuView());
             }
             BackupSystem.SaveOnStacks();
+            VerificationSystem = new VerificationReviewed(LittleGridViewModels);
+
+
+
+
         }
         public void ApplyColors(string color)
         {
@@ -169,14 +179,14 @@ namespace Sudoku.ViewModels
         public static void ResetMultiSelection()
         {
             foreach (var l in littleGridViewModels)
-                for (int i = 0; i < l.littlecaseList.Count; i++)
+                for (int i = 0; i < l.IndividualCaseList.Count; i++)
                 {                   
-                    if (l.littlecaseList[i].IsSelected == true)
+                    if (l.IndividualCaseList[i].IsSelected == true)
                     {
-                        l.littlecaseList[i].bnvm.IsSelected = false;
-                        l.littlecaseList[i].lnvm.IsSelected = false;
-                        l.littlecaseList[i].IsSelected = false;
-                        l.littlecaseList[i].changeBorderColor("white");
+                        l.IndividualCaseList[i].bnvm.IsSelected = false;
+                        l.IndividualCaseList[i].lnvm.IsSelected = false;
+                        l.IndividualCaseList[i].IsSelected = false;
+                        l.IndividualCaseList[i].changeBorderColor("white");
                     }
                 }
             selectedCase.RemoveAll(a => a!= null);

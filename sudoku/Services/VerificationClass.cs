@@ -13,7 +13,7 @@ namespace Sudoku.Services
         //public static int[,] values2evaluate = new int[9, 9];
         private int[,] values2evaluate { get; set; }
         private int[,] redcases { get; set; }
-        public static ObservableCollection<LittleSudokuGridViewModel> LittleGridList;
+        public static ObservableCollection<LittleSudokuView> LittleGridList;
 
 
         // Pour les teste unitaire, au lieu de recréer un nouvelle classe
@@ -22,7 +22,7 @@ namespace Sudoku.Services
             values2evaluate = newGrid;
         }
 
-        public VerificationClass(ObservableCollection<LittleSudokuGridViewModel> gameActu)
+        public VerificationClass(ObservableCollection<LittleSudokuView> gameActu)
         {
             LittleGridList = gameActu;
 
@@ -72,9 +72,9 @@ namespace Sudoku.Services
         }
         private int[,] Collection2Int()
         {
-            foreach (LittleSudokuGridViewModel littlegrid in LittleGridList)
+            foreach (LittleSudokuView littlegrid in LittleGridList)
             {
-                foreach (IndividualCaseViewModel individual in littlegrid.IndividualCaseViewModels)
+                foreach (IndividualCaseView individual in littlegrid.IndividualCaseViewModels)
                 {
                     int i = LittleGridList.IndexOf(littlegrid);
                     int j = littlegrid.IndividualCaseViewModels.IndexOf(individual);
