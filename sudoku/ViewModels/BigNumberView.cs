@@ -38,7 +38,7 @@ namespace Sudoku.ViewModels
                     this.Numbers.Number = value;
                     this.OnPropertyChanged("BigNumber");
                     // valueModified = Numbers.Number;
-                    //new SudokuView(new ObservableCollection<BaseViewModel>()).ActiveVerification();
+                    new SudokuView(new ObservableCollection<BaseViewModel>()).ActiveVerification();
                     BackupSystem.SaveOnStacks();
                   
                 }

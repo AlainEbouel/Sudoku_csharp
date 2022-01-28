@@ -32,11 +32,12 @@ namespace Sudoku.ViewModels
         }
         public SudokuView()
         {
-            VerificationApp = new VerificationClass(LittleGridViewModels);
+            
             LittleGridViewModels = new ObservableCollection<LittleSudokuView>();
             Name = this.GetType().Name;
             InitViews();
-                
+            VerificationApp = new VerificationClass(LittleGridViewModels);
+
 
         }
 
