@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+
 
 namespace Sudoku.ViewModels
 {
+    [Serializable]
     public class LittleSudokuView : BaseViewModel
     {
         private ObservableCollection<BaseViewModel> individualCaseViewModels;
@@ -41,6 +44,6 @@ namespace Sudoku.ViewModels
         {
             return (IndividualCaseView)IndividualCaseViewModels[index];
         }
-
+       
     }
 }

@@ -1,8 +1,10 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace Sudoku.ViewModels
 {
+    [Serializable]
     public class BaseViewModel : INotifyPropertyChanged
     {
         public string Name { get; set; }

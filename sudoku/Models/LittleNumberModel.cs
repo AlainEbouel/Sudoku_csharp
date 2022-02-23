@@ -1,5 +1,9 @@
-﻿namespace Sudoku.Models
+﻿
+using System;
+
+namespace Sudoku.Models
 {
+    [Serializable]
     public class LittleNumberModel
     {
         public string LNumber { get; set; }

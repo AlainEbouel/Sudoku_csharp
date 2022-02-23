@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 namespace Sudoku.ViewModels
 {
+    [Serializable]
     public class LittleNumberView : BaseViewModel
     {
         private LittleNumberModel LittleNbr1 { get; set; }

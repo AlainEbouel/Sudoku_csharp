@@ -4,6 +4,7 @@ using System.Windows.Media;
 
 namespace Sudoku.Commands
 {
+    [Serializable]
     public class DelegateCommand<T> : ICommand
     {
         private readonly Predicate<T> _canExecute;

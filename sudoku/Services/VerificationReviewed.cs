@@ -106,50 +106,36 @@ namespace Sudoku.Services
             int initialColumn = column;
             for (int i = 0; i < 3; i++)
             {
-                IndividualCaseView indCase = littleSudokuView.IndividualCaseList[i];
-
-                indCase.BelongingList.Add(littleSudokuView.IndividualCaseList);
-                ListOfColumnList[column].Add(indCase);
-                ListOfRowList[row].Add(indCase);
-
-                indCase.BelongingList.Add(ListOfColumnList[column++]);
-                indCase.BelongingList.Add(ListOfRowList[row]);
-
+                SubDistribution(littleSudokuView, column++, row, i);
             }
 
             row += 1;
             column = initialColumn;
             for (int i = 3; i < 6; i++)
-            {               
-                IndividualCaseView indCase = littleSudokuView.IndividualCaseList[i];
-
-                indCase.BelongingList.Add(littleSudokuView.IndividualCaseList);
-                ListOfColumnList[column].Add(indCase);
-                ListOfRowList[row].Add(indCase);
-
-                indCase.BelongingList.Add(ListOfColumnList[column++]);
-                indCase.BelongingList.Add(ListOfRowList[row]);
-
+            {
+                SubDistribution(littleSudokuView, column++, row, i);
             }
 
             row += 1;
             column = initialColumn;
             for (int i = 6; i < 9; i++)
             {
-                
-                IndividualCaseView indCase = littleSudokuView.IndividualCaseList[i];
-
-                indCase.BelongingList.Add(littleSudokuView.IndividualCaseList);
-                ListOfColumnList[column].Add(indCase);
-                ListOfRowList[row].Add(indCase);
-
-                indCase.BelongingList.Add(ListOfColumnList[column++]);
-                indCase.BelongingList.Add(ListOfRowList[row]);
-
-            }
-            
-
+                SubDistribution(littleSudokuView, column++, row, i);
+            }   
         }
+
+        private void SubDistribution(LittleSudokuView littleSudokuView, int column, int row, int i)
+        {
+            IndividualCaseView indCase = littleSudokuView.IndividualCaseList[i];
+
+            indCase.BelongingList.Add(littleSudokuView.IndividualCaseList);
+            ListOfColumnList[column].Add(indCase);
+            ListOfRowList[row].Add(indCase);
+
+            indCase.BelongingList.Add(ListOfColumnList[column]);
+            indCase.BelongingList.Add(ListOfRowList[row]);
+        }
+
         public void Verification_2()
         {
             foreach(var lsudoku in LittleSudokuList)

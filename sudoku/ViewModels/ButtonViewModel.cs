@@ -37,12 +37,17 @@ namespace Sudoku.ViewModels
         private void Load(string obj)
         {
             BackupSystem.StackIsLocked = true;
-            BackupSystem.LoadingActivation("backupFile.txt");
+            //BackupSystem.LoadingActivation("backupFile.txt");
+            SudokuView.DeserializedIndCase();
             BackupSystem.StackIsLocked = false;
+
+            SudokuView.DeserializedIndCase();
+            
         }
         private void Save(string obj)
         {
             BackupSystem.BackupActivation();
+            SudokuView.SerializeIndCase();
         }
 
         private void Undo(string obj)

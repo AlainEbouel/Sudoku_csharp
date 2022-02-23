@@ -1,15 +1,19 @@
-﻿using Sudoku.Models;
+﻿using System;
+using Sudoku.Models;
 using Sudoku.Services;
 using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace Sudoku.ViewModels
 {
+    [Serializable]
     public class BigNumberView : BaseViewModel
     {
         public bool IsSelected { get; set; }
         public readonly int Id;
         public IndividualCaseView ParentIndCase { get; set; }
+        public BigNumber Numbers { get; set; }
+
         public BigNumberView(BigNumber number, IndividualCaseView parentIndCase)
         {
             ParentIndCase = parentIndCase;
@@ -18,8 +22,10 @@ namespace Sudoku.ViewModels
             IsSelected = false;
             
         }
+        public BigNumberView()
+        { }
 
-        public BigNumber Numbers { get; private set; }
+     
         public string BigNumber
         {
             get

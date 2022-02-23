@@ -8,6 +8,7 @@ using System.Linq;
 
 namespace Sudoku.ViewModels
 {
+    //[Serializable]
     public class IndividualCaseView : BaseViewModel
     {
         private BaseViewModel currentViewModel;
